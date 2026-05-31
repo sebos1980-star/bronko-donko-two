@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patua+One&family=Nunito:wght@400;700&display=swap" />
-  <link rel="stylesheet" href="../css/styles.css?v=4" />
+  <link rel="stylesheet" href="../css/styles.css?v=5" />
   <noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
@@ -359,14 +359,16 @@
         <h3 id="verrat">Der Verrat</h3>
         <div class="swap-diagram">
           <div class="swap-party">
+            <img class="swap-party__card" src="../assets/images/cards/special/donko-haufen.png" alt="Donko-Haufen-Karte" loading="lazy" />
             <span class="swap-party__role">Donko</span>
             <span class="swap-party__sub">der Verlierer</span>
           </div>
-          <div class="swap-arrows">
-            <span class="a-give">2 stärkste Karten &rarr;</span>
-            <span class="a-back">&larr; 2 beliebige Karten</span>
+          <div class="swap-arrows" aria-hidden="true">
+            <div class="swap-arrow swap-arrow--give"><span class="swap-arrow__txt">2 stärkste Karten</span></div>
+            <div class="swap-arrow swap-arrow--back"><span class="swap-arrow__txt">2 beliebige Karten</span></div>
           </div>
           <div class="swap-party">
+            <img class="swap-party__card" src="../assets/images/cards/special/bronko-blut.png" alt="Bronko-Blut-Karte" loading="lazy" />
             <span class="swap-party__role">Bronko</span>
             <span class="swap-party__sub">der Boss</span>
           </div>
@@ -389,13 +391,13 @@
         <p>Wird von einem Spieler ein <strong><a class="rule-link" href="#mob">4er-Mob</a></strong> ausgespielt, zettelt er eine Revolution an.</p>
         <div class="flip-demo">
           <div class="flip-demo__item">
-            <div class="flip-demo__card flip-demo__card--before">1</div>
-            <span class="flip-demo__label">Donko · normale Stärke</span>
+            <img class="flip-demo__card" src="../assets/images/cards/trottel-troy-staerke.png" alt="Donko-Karte mit normaler Stärke 1" loading="lazy" />
+            <span class="flip-demo__label">Donko · normale Stärke <b>1</b></span>
           </div>
           <span class="flip-demo__arrow" aria-hidden="true">&#8635;</span>
           <div class="flip-demo__item">
-            <div class="flip-demo__card flip-demo__card--after">7 <span class="faust-icon">✊</span></div>
-            <span class="flip-demo__label">Donko · Revolutionsstärke</span>
+            <img class="flip-demo__card flip-demo__card--flipped" src="../assets/images/cards/trottel-troy-staerke.png" alt="Dieselbe Donko-Karte um 180 Grad gedreht – Revolutionsstärke 7 mit Faust" loading="lazy" />
+            <span class="flip-demo__label">Donko · Revolutionsstärke <b>7</b> <span class="faust-icon">✊</span></span>
           </div>
         </div>
         <ul>

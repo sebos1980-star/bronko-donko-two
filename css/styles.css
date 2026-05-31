@@ -1562,16 +1562,55 @@ body.modal-open { overflow: hidden; }
   background: #0a0a0a;
   border: 1px solid var(--color-silver-faint);
   border-radius: var(--radius);
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-3) var(--space-4);
   text-align: center;
-  min-width: 120px;
+  min-width: 110px;
+}
+.swap-party__card {
+  display: block;
+  width: 80px;
+  margin: 0 auto var(--space-2);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-silver-faint);
 }
 .swap-party__role { font-family: var(--font-display); color: var(--color-yellow); font-size: 1.15rem; }
 .swap-party__sub { display: block; font-size: 0.78rem; color: var(--color-silver-dim); }
-.swap-arrows { display: flex; flex-direction: column; gap: var(--space-2); font-size: 0.82rem; }
-.swap-arrows span { white-space: nowrap; }
-.swap-arrows .a-give { color: var(--color-red); }
-.swap-arrows .a-back { color: var(--color-silver-dim); }
+
+.swap-arrows { display: flex; flex-direction: column; gap: var(--space-6); flex: 0 0 auto; }
+.swap-arrow { position: relative; width: 132px; height: 26px; }
+.swap-arrow::before {            /* Pfeil-Schaft */
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  border-radius: 2px;
+}
+.swap-arrow::after {             /* Pfeilspitze */
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.swap-arrow--give::before { left: 2px; right: 9px; background: linear-gradient(90deg, transparent, var(--color-red)); }
+.swap-arrow--give::after  { right: 0; border-left: 9px solid var(--color-red); }
+.swap-arrow--back::before { left: 9px; right: 2px; background: linear-gradient(90deg, var(--color-silver-dim), transparent); }
+.swap-arrow--back::after  { left: 0; border-right: 9px solid var(--color-silver-dim); }
+.swap-arrow__txt {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 13px;
+  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.swap-arrow--give .swap-arrow__txt { color: var(--color-red); }
+.swap-arrow--back .swap-arrow__txt { color: var(--color-silver-dim); bottom: auto; top: 13px; }
 
 /* ============================================
    REVOLUTION-FLIP (Kap. 6)
@@ -1586,22 +1625,17 @@ body.modal-open { overflow: hidden; }
 }
 .flip-demo__item { text-align: center; }
 .flip-demo__card {
-  width: 72px;
-  height: 100px;
+  width: 92px;
+  height: auto;
   margin: 0 auto;
+  display: block;
   border-radius: var(--radius);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 2rem;
-  background: #131313;
-  border: 2px solid;
+  border: 1px solid var(--color-silver-faint);
 }
-.flip-demo__card--before { color: #3399ff; border-color: #0066cc; }
-.flip-demo__card--after { color: var(--color-yellow); border-color: #cc9900; }
+.flip-demo__card--flipped { transform: rotate(180deg); }
 .flip-demo__label { display: block; font-size: 0.78rem; color: var(--color-silver-dim); margin-top: var(--space-2); }
-.flip-demo__arrow { font-size: 1.8rem; color: var(--color-yellow); }
+.flip-demo__label b { color: var(--color-yellow); }
+.flip-demo__arrow { font-size: 2rem; color: var(--color-yellow); }
 
 /* ============================================
    WESTE-ZUSTÄNDE (Kap. 6)
