@@ -5,14 +5,26 @@ Umlaute oder Klammern – wichtig für GitHub Pages).
 
 ## Namens-Konvention
 
-Jeder Charakter erscheint mit zwei Kartenseiten:
+Jeder Charakter erscheint mit **einer** Kartenseite:
 
 | Suffix         | Kartentyp           | Erkennungsmerkmal auf der Karte                    |
 |----------------|---------------------|----------------------------------------------------|
 | `…-staerke.png`| Kämpfer-Karte       | Stärke + Gäng-Name oben links (z. B. „8 Bronko")   |
-| `…-lp.png`     | Schläger-Karte (LP) | „X LP" oben, **Charakter-Name** unten              |
 
-Beispiel: `der-baenker-staerke.png` (Stärke „2 Cobra") und `der-baenker-lp.png` („4 LP").
+Beispiel: `der-baenker-staerke.png` (Stärke „2 Cobra").
+
+> **Hinweis:** Die früheren 32 charakterbezogenen `…-lp.png`-Karten wurden entfernt.
+> Die Lebenspunkte sind jetzt der **Bronko-LP-Stapel** → siehe `lp/` unten.
+
+## `lp/` – Der Bronko-LP-Stapel (Lebenspunkte)
+
+Jeder Spieler hat seinen Bronko als offenen 10-Karten-Stapel à 10 LP:
+`lp-100.svg` (oben, unversehrt) … `lp-10.svg` (unten, kaputt geprügelt) = 100 LP.
+Bei Schaden (auf volle 10 aufgerundet) wirft man die oberste(n) Karte(n) ab.
+
+> **PLATZHALTER:** Die `lp-*.svg` sind rein prozedural generierte Platzhalter.
+> Für die finale Optik einfach durch echte Grafiken ersetzen (bei Wechsel auf `.png`
+> die `src`-Pfade in `hofregeln/index.html` mitziehen).
 
 Die zwei Spezial-Charaktere haben nur **eine** Karte (kein LP-Pendant):
 `dr-nar-kose.png`, `duenenwolf.png`.
@@ -29,4 +41,4 @@ Die zwei Spezial-Charaktere haben nur **eine** Karte (kein LP-Pendant):
 - `flucht-1.png` … `flucht-3.png` – die drei Fluchtkarten
 - `orden.png`, `orden-2.png` … `orden-5.png` – die fünf Bronko-Orden
 - `rueckseite.png`   – Kämpfer-Rückseite (B&D-Logo)
-- `rueckseite-lp.png`– Schläger-Rückseite (Faust)
+- `rueckseite-lp.png`– Bronko-LP-Rückseite (Faust)

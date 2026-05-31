@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" width="300" height="420" role="img" aria-label="Bronko-LP-Karte (Platzhalter) 60 LP">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2622"/>
+      <stop offset="1" stop-color="#3f0c0a"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="288" height="408" rx="20" fill="url(#bg)" stroke="#0c0805" stroke-width="4"/>
+  <rect x="14" y="14" width="272" height="392" rx="14" fill="none" stroke="#c8442e" stroke-width="2" opacity="0.55"/>
+
+  <!-- Kopf-Label -->
+  <text x="26" y="46" font-family="Patua One, Georgia, serif" font-size="22" fill="#f5e9c8" letter-spacing="1">BRONKO</text>
+  <text x="274" y="46" text-anchor="end" font-family="Nunito, sans-serif" font-weight="700" font-size="15" fill="#c8442e">LP</text>
+
+  <!-- "Avatar"-Fläche mit Faust + Schaden -->
+  <g transform="rotate(-0.22 150 200)">
+    <circle cx="150" cy="195" r="92" fill="#1c1714" stroke="#0c0805" stroke-width="3"/>
+    <text x="150" y="232" text-anchor="middle" font-size="96" opacity="0.9">&#9994;</text>
+    <ellipse cx="172" cy="158" rx="16" ry="11" fill="#3a1a5a" opacity="0.8"/>
+    <circle cx="96" cy="250" r="7" fill="#8b0f0a" opacity="0.85"/><circle cx="102" cy="257" r="4" fill="#8b0f0a" opacity="0.7"/><circle cx="210" cy="200" r="6" fill="#8b0f0a" opacity="0.85"/><circle cx="215" cy="206" r="3" fill="#8b0f0a" opacity="0.7"/><circle cx="150" cy="300" r="9" fill="#8b0f0a" opacity="0.85"/><circle cx="158" cy="309" r="6" fill="#8b0f0a" opacity="0.7"/><circle cx="120" cy="180" r="5" fill="#8b0f0a" opacity="0.85"/><circle cx="124" cy="185" r="2" fill="#8b0f0a" opacity="0.7"/>
+    <path d="M70,150 L110,205 L92,225 L140,290" stroke="#0c0805" stroke-width="3.5" fill="none" stroke-linejoin="round" opacity="0.75"/><path d="M70,150 L110,205 L92,225 L140,290" stroke="#7a1410" stroke-width="1.4" fill="none" stroke-linejoin="round" opacity="0.9"/><path d="M235,120 L205,175 L228,200 L196,255" stroke="#0c0805" stroke-width="3.5" fill="none" stroke-linejoin="round" opacity="0.75"/><path d="M235,120 L205,175 L228,200 L196,255" stroke="#7a1410" stroke-width="1.4" fill="none" stroke-linejoin="round" opacity="0.9"/><path d="M150,90 L160,140 L138,165 L168,210" stroke="#0c0805" stroke-width="3.5" fill="none" stroke-linejoin="round" opacity="0.75"/><path d="M150,90 L160,140 L138,165 L168,210" stroke="#7a1410" stroke-width="1.4" fill="none" stroke-linejoin="round" opacity="0.9"/><path d="M60,260 L100,300 L82,325 L120,360" stroke="#0c0805" stroke-width="3.5" fill="none" stroke-linejoin="round" opacity="0.75"/><path d="M60,260 L100,300 L82,325 L120,360" stroke="#7a1410" stroke-width="1.4" fill="none" stroke-linejoin="round" opacity="0.9"/>
+  </g>
+
+  <!-- grosse LP-Zahl -->
+  <text x="150" y="350" text-anchor="middle" font-family="Patua One, Georgia, serif" font-size="84" fill="#f5e9c8" stroke="#0c0805" stroke-width="2">60</text>
+  <text x="150" y="378" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="700" font-size="16" fill="#c8442e" letter-spacing="3">LEBENSPUNKTE</text>
+
+  <!-- Platzhalter-Tag -->
+  <text x="150" y="402" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="700" font-size="10" fill="#8a8178" letter-spacing="2">PLATZHALTER &#183; KARTE 5/10</text>
+</svg>
