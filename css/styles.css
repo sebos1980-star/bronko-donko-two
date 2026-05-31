@@ -1,0 +1,1671 @@
+/* ============================================
+   BRONKO-DONKO — globales Stylesheet
+   ============================================ */
+
+/* ---- Brand-Tokens (eine Farbe pro Rolle) ---- */
+:root {
+  --color-bg: #000000;
+  --color-silver: #c0c0c0;
+  --color-red: #ed130d;
+  --color-yellow: #f2c200;
+
+  --color-silver-dim:   rgba(192, 192, 192, 0.6);
+  --color-silver-faint: rgba(192, 192, 192, 0.15);
+  --color-red-glow:     rgba(237,  19,  13, 0.4);
+  --color-yellow-glow:  rgba(242, 194,   0, 0.4);
+
+  --font-display: 'Patua One', Georgia, serif;
+  --font-body:    'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --max-width:      1200px;
+  --max-width-text: 70ch;
+
+  --border-thick: 3px;
+  --radius: 4px;
+
+  --transition-fast: 150ms ease;
+  --transition-med:  250ms ease;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--color-bg);
+  color: var(--color-silver);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at top left,     rgba(192, 192, 192, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(237,  19,  13, 0.05) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--color-silver); text-decoration: none; }
+a:hover { color: var(--color-red); }
+
+/* Regelwerk-Querverweise: silber & halbfett, kein Unterstrich, Hover → gelb */
+.rule-link {
+  color: var(--color-silver);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.rule-link:hover,
+.rule-link:focus-visible { color: var(--color-yellow); }
+ul, ol { list-style: none; }
+.bullet-list { list-style: disc; padding-left: 1.5rem; }
+button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+
+/* ---- Typografie ---- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--color-silver);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+h1 { font-size: clamp(2.5rem,  6vw,  5rem); }
+h2 { font-size: clamp(1.75rem, 4vw,  2.75rem); }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+p  { margin-bottom: var(--space-4); }
+strong { color: #fff; }
+.text-red    { color: var(--color-red); }
+.text-yellow { color: var(--color-yellow); }
+
+/* ---- Skip-Link (Accessibility) ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-yellow);
+  color: #000;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-display);
+  z-index: 200;
+}
+.skip-link:focus { left: var(--space-2); top: var(--space-2); }
+
+/* ============================================
+   HEADER / NAV
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-silver-faint);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--color-yellow);
+  letter-spacing: 0.04em;
+}
+.brand:hover { color: var(--color-yellow); }
+/* Bindestrich enger an die Wortteile heranziehen */
+.brand__highlight { color: var(--color-red); margin: 0 -0.07em; }
+.brand__logo {
+  display: block;
+  height: 36px;
+  width: auto;
+}
+
+.nav-toggle {
+  display: block;
+  padding: var(--space-2);
+  color: var(--color-silver);
+}
+.nav-toggle__icon,
+.nav-toggle__icon::before,
+.nav-toggle__icon::after {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: currentColor;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+.nav-toggle__icon { position: relative; }
+.nav-toggle__icon::before,
+.nav-toggle__icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+.nav-toggle__icon::before { top: -8px; }
+.nav-toggle__icon::after  { top:  8px; }
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon { background: transparent; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon::before { transform: translateY(8px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon::after  { transform: translateY(-8px) rotate(-45deg); }
+
+.nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.98);
+  border-bottom: 1px solid var(--color-silver-faint);
+}
+.nav.is-open { display: block; }
+.nav__list { display: flex; flex-direction: column; }
+.nav__link {
+  display: block;
+  padding: var(--space-4);
+  color: var(--color-silver);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-silver-faint);
+  transition: color var(--transition-fast);
+}
+.nav__link:hover,
+.nav__link.is-active {
+  color: var(--color-red);
+}
+
+@media (min-width: 720px) {
+  .nav-toggle { display: none; }
+  .nav {
+    display: block;
+    position: static;
+    background: none;
+    border: none;
+  }
+  .nav__list { flex-direction: row; gap: var(--space-2); }
+  .nav__link {
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 1rem;
+  }
+  .nav__link.is-active { border-bottom-color: var(--color-red); }
+}
+
+/* ============================================
+   SECTION DIVIDER (rote / gelbe Stripe)
+   ============================================ */
+.divider {
+  height: var(--border-thick);
+  width: 100%;
+  background: var(--color-red);
+  border: none;
+  margin: 0;
+}
+.divider--yellow { background: var(--color-yellow); }
+.divider--thick  { height: 6px; }
+
+/* ============================================
+   HERO (Startseite)
+   ============================================ */
+.hero {
+  padding: var(--space-16) var(--space-4) var(--space-12);
+  text-align: center;
+}
+.hero__image {
+  display: block;
+  width: 100%;
+  max-width: 880px;
+  height: auto;
+  margin: 0 auto var(--space-6);
+  /* Weicher Übergang in den schwarzen Hintergrund statt harter Kanten */
+  -webkit-mask-image: radial-gradient(ellipse 78% 78% at center, #000 55%, transparent 100%);
+          mask-image: radial-gradient(ellipse 78% 78% at center, #000 55%, transparent 100%);
+}
+.hero__tagline {
+  font-family: var(--font-display);
+  color: var(--color-yellow);
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+.hero__meta {
+  color: var(--color-silver-dim);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-8);
+}
+.hero__cta {
+  display: inline-block;
+  padding: var(--space-3) var(--space-8);
+  background: var(--color-red);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px solid var(--color-red);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+  box-shadow: 0 0 24px var(--color-red-glow);
+}
+.hero__cta:hover {
+  background: transparent;
+  color: var(--color-red);
+  box-shadow: 0 0 32px var(--color-red-glow);
+}
+
+/* ============================================
+   SECTION (generischer Block)
+   ============================================ */
+.section { padding: var(--space-12) 0; }
+.section__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+.section__title {
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+.section__title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--color-red);
+  margin: var(--space-3) auto 0;
+}
+.section__title--yellow::after { background: var(--color-yellow); }
+
+.section__lead {
+  max-width: var(--max-width-text);
+  margin: 0 auto var(--space-4);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* ============================================
+   GANG GRID + CARDS
+   ============================================ */
+.gang-grid,
+.character-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+@media (min-width: 600px) {
+  .gang-grid, .character-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .gang-grid { grid-template-columns: repeat(2, 1fr); }
+  .character-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.gang-card {
+  background: #0a0a0a;
+  border: 1px solid var(--color-silver-faint);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all var(--transition-med);
+  display: flex;
+  flex-direction: column;
+  /* als <button>: Karte füllt die Zelle, Text linksbündig, klickbar */
+  width: 100%;
+  text-align: left;
+  color: var(--color-silver);
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+.gang-card:hover,
+.gang-card:focus-visible {
+  border-color: var(--color-red);
+  box-shadow: 0 0 24px var(--color-red-glow);
+  transform: translateY(-3px);
+  outline: none;
+}
+.gang-card__image {
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-bottom: 1px solid var(--color-silver-faint);
+  width: 100%;
+  /* Gang-Banner zeigen mehrere Figuren nebeneinander auf schwarzem Grund —
+     contain hält alle sichtbar, der schwarze Rand verschmilzt mit der Karte.
+     Das Logo liegt als dezentes Wasserzeichen dahinter, damit die schwarzen
+     Randflächen nicht tot wirken. */
+  object-fit: contain;
+  background-image: url("../assets/images/logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 42%;
+  background-blend-mode: luminosity;
+}
+.gang-card__body { display: block; padding: var(--space-4); flex: 1; }
+.gang-card__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--color-red);
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.04em;
+}
+.gang-card__text {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Charakter-Variante: gelb statt rot */
+.gang-card--character .gang-card__title { color: var(--color-yellow); }
+.gang-card--character:hover {
+  border-color: var(--color-yellow);
+  box-shadow: 0 0 24px var(--color-yellow-glow);
+}
+
+/* ============================================
+   CTA BLOCK
+   ============================================ */
+.cta-block {
+  background: linear-gradient(135deg, rgba(237, 19, 13, 0.1), rgba(0, 0, 0, 0.5));
+  border: 2px solid var(--color-red);
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+  margin: var(--space-8) auto;
+  max-width: 900px;
+  border-radius: 4px;
+}
+.cta-block__title { margin-bottom: var(--space-4); }
+.cta-block__text {
+  margin: 0 auto var(--space-6);
+  max-width: 500px;
+}
+.cta-block__button {
+  display: inline-block;
+  padding: var(--space-3) var(--space-8);
+  background: var(--color-red);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px solid var(--color-red);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+.cta-block__button:hover {
+  background: transparent;
+  color: var(--color-red);
+}
+
+/* ============================================
+   HOFREGELN
+   ============================================ */
+.banner-update {
+  background: var(--color-yellow);
+  color: #000;
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+}
+.banner-update strong { color: #000; }
+
+.hofregeln-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4) var(--space-16);
+}
+.hofregeln-page > h1 {
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+.hofregeln-page > h1::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 4px;
+  background: var(--color-red);
+  margin: var(--space-4) auto 0;
+}
+
+.toc {
+  background: rgba(192, 192, 192, 0.04);
+  border: 1px solid var(--color-silver-faint);
+  border-left: 4px solid var(--color-yellow);
+  padding: var(--space-6);
+  margin-bottom: var(--space-12);
+  border-radius: 4px;
+}
+.toc__title {
+  font-family: var(--font-display);
+  color: var(--color-yellow);
+  font-size: 1.1rem;
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.toc__list { display: grid; gap: var(--space-2); }
+.toc__link {
+  font-size: 0.95rem;
+  padding: var(--space-1) 0;
+  border-bottom: 1px dashed var(--color-silver-faint);
+}
+
+.hofregeln-section {
+  margin-bottom: var(--space-12);
+  scroll-margin-top: 80px;
+}
+.hofregeln-section h2 {
+  color: var(--color-red);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-silver-faint);
+}
+.hofregeln-section h3 {
+  color: var(--color-yellow);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+  font-size: 1.3rem;
+}
+.hofregeln-section h4 {
+  color: var(--color-silver);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+}
+.hofregeln-section ul {
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+.hofregeln-section ul li {
+  position: relative;
+  padding-left: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+.hofregeln-section ul li::before {
+  content: '◆';
+  color: var(--color-red);
+  position: absolute;
+  left: -8px;
+  top: 0.4rem;
+  font-size: 0.7rem;
+}
+/* Nummerierte Schritte mit runden Nummern-Badges (roter Kreis, weiße Ziffer) */
+.hofregeln-section ol {
+  list-style: none;
+  counter-reset: schritt;
+  padding-left: 0;
+  margin-bottom: var(--space-4);
+}
+.hofregeln-section ol li {
+  counter-increment: schritt;
+  position: relative;
+  padding-left: 3rem;
+  min-height: 2rem;
+  margin-bottom: var(--space-4);
+}
+.hofregeln-section ol li::before {
+  content: counter(schritt);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--color-red);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px var(--color-red-glow);
+}
+
+.hofregeln-page__intro {
+  max-width: var(--max-width-text);
+  margin: 0 auto var(--space-12);
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--color-silver-dim);
+  font-style: italic;
+}
+.hofregeln-hint {
+  color: var(--color-silver-dim);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+/* ---- Inline-Textfarben für Karten-Farben (Spielinhalt, NICHT Markenpalette) ---- */
+.t-red { color: #ff4d4d; font-weight: 700; }
+.t-yel { color: #ffd700; font-weight: 700; }
+.t-grn { color: #33cc33; font-weight: 700; }
+.t-blu { color: #3399ff; font-weight: 700; }
+
+/* ---- Karten-Chips (farbige Stärke-Icons aus dem Regelwerk) ---- */
+.c-num {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 0 6px;
+  margin: 0 1px;
+  border-radius: 3px;
+  background-color: #1a1a1a;
+  border: 1px solid;
+  letter-spacing: 1px;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.8);
+}
+.c-red { color: #ff4d4d; border-color: #cc0000; }
+.c-yel { color: #ffd700; border-color: #cc9900; }
+.c-grn { color: #33cc33; border-color: #009900; }
+.c-blu { color: #3399ff; border-color: #0066cc; }
+.c-wht { color: #ffffff; border-color: #999999; }
+
+.faust-icon {
+  font-size: 1.1rem;
+  margin-left: 4px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* ---- Beispiel- & Hinweis-Boxen ---- */
+.example-box {
+  background-color: rgba(237, 19, 13, 0.08);
+  border-left: 4px solid var(--color-red);
+  padding: var(--space-4) var(--space-6);
+  margin: var(--space-4) 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.97rem;
+}
+.example-box p { margin-bottom: var(--space-2); }
+.example-box p:last-child { margin-bottom: 0; }
+.example-title {
+  color: var(--color-red);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: var(--space-2);
+  font-size: 0.95rem;
+}
+.note-box {
+  background-color: rgba(74, 128, 57, 0.12);
+  border-left: 4px solid #4a8039;
+  padding: var(--space-4) var(--space-6);
+  margin: var(--space-4) 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.97rem;
+}
+.note-box strong { color: #7ac15f; }
+.note-box__list {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+}
+.note-box__list li {
+  position: relative;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-2);
+}
+.note-box__list li:last-child { margin-bottom: 0; }
+.note-box__list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #7ac15f;
+}
+
+/* ---- Formations-Karten (Solo / Mob / Straße) ---- */
+.formation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+.formation-card {
+  background: #0a0a0a;
+  border: 1px solid var(--color-silver-faint);
+  border-top: var(--border-thick) solid var(--color-red);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-4) var(--space-6);
+  display: flex;
+  flex-direction: column;
+}
+.formation-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-silver-faint);
+}
+.formation-card__label {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--color-yellow);
+  letter-spacing: 0.03em;
+}
+.formation-card__count {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-silver-dim);
+  white-space: nowrap;
+}
+.formation-card__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  font-size: 1.4rem;
+  margin-bottom: var(--space-3);
+}
+.formation-card__desc {
+  font-size: 0.92rem;
+  color: var(--color-silver);
+  margin: auto 0 0;
+}
+
+@media (max-width: 640px) {
+  .formation-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Gäng-Hierarchie-Tabelle ---- */
+.table-wrap { overflow-x: auto; margin: var(--space-6) 0; }
+.rules-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #0a0a0a;
+  border: 1px solid var(--color-silver-faint);
+  font-size: 0.95rem;
+}
+.rules-table th {
+  background-color: #1a0606;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-3);
+  text-align: left;
+  border-bottom: 2px solid var(--color-red);
+}
+.rules-table td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-silver-faint);
+}
+.rules-table tr:nth-child(even) td { background-color: #111; }
+.rules-table tr:hover td { background-color: #1c1c1c; }
+.center-text { text-align: center; }
+
+/* ============================================
+   LEGAL PAGES (Impressum / Datenschutz / Story)
+   ============================================ */
+.legal-page,
+.story-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4) var(--space-16);
+}
+.legal-page > h1,
+.story-page > h1 { margin-bottom: var(--space-6); }
+.legal-page > h1::after,
+.story-page > h1::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: var(--color-red);
+  margin: var(--space-3) 0 0;
+}
+.legal-page h2,
+.story-page h2 {
+  font-size: 1.4rem;
+  color: var(--color-yellow);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-3);
+}
+.legal-page address {
+  font-style: normal;
+  margin-bottom: var(--space-4);
+}
+.legal-page a {
+  color: var(--color-red);
+  text-decoration: underline;
+  text-decoration-color: var(--color-silver-faint);
+}
+.legal-page a:hover { text-decoration-color: var(--color-red); }
+
+.story-page { max-width: var(--max-width-text); }
+.story-page p { font-size: 1.05rem; }
+.story-page__lead {
+  color: var(--color-silver-dim);
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+}
+.story-page figure {
+  margin: var(--space-8) 0;
+}
+.story-page figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-silver-faint);
+  border-radius: 2px;
+}
+.story-page figcaption {
+  margin-top: var(--space-2);
+  font-size: 0.9rem;
+  color: var(--color-silver-dim);
+  font-style: italic;
+}
+.story-page a {
+  color: var(--color-yellow);
+  text-decoration: underline;
+  text-decoration-color: var(--color-silver-faint);
+}
+.story-page a:hover { text-decoration-color: var(--color-yellow); }
+
+/* ============================================
+   404
+   ============================================ */
+.error-page {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+}
+.error-page__code {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 20vw, 12rem);
+  color: var(--color-red);
+  line-height: 1;
+  text-shadow: 0 0 40px var(--color-red-glow);
+  margin-bottom: var(--space-4);
+}
+.error-page__message {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-6);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  border-top: 1px solid var(--color-silver-faint);
+  padding: var(--space-8) var(--space-4) var(--space-6);
+  margin-top: var(--space-16);
+  text-align: center;
+  color: var(--color-silver-dim);
+  font-size: 0.9rem;
+}
+.site-footer__brand {
+  font-family: var(--font-display);
+  color: var(--color-silver);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-3);
+}
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.site-footer__links a { color: var(--color-silver); }
+.site-footer__links .sep { color: var(--color-silver-faint); }
+.site-footer__legal { color: var(--color-silver-faint); font-size: 0.8rem; }
+.site-footer__easter {
+  color: var(--color-silver-faint);
+  font-size: 0.8rem;
+  margin-top: var(--space-4);
+  font-style: italic;
+}
+.site-footer__easter a { color: var(--color-silver-faint); }
+.site-footer__easter a:hover { color: var(--color-yellow); }
+
+/* ============================================
+   DETAIL-OVERLAY (Gängs & Charaktere)
+   ============================================ */
+.modal[hidden] { display: none; }
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+.modal__dialog {
+  position: relative;
+  background: #0a0a0a;
+  border: 2px solid var(--color-red);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: var(--space-8);
+  box-shadow: 0 0 48px var(--color-red-glow);
+}
+.modal__dialog::-webkit-scrollbar { display: none; }
+.modal__close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-3);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--color-silver);
+}
+.modal__close:hover,
+.modal__close:focus-visible { color: var(--color-red); outline: none; }
+.modal__image {
+  width: auto;
+  max-width: 100%;
+  max-height: 70vh;
+  margin: 0 auto var(--space-4);
+  display: block;
+  border-radius: 2px;
+  background: #000;
+}
+.modal__image[hidden] { display: none; }
+.modal__title { color: var(--color-red); margin-bottom: var(--space-4); }
+.modal__body p { font-size: 1.05rem; margin: 0; }
+body.modal-open { overflow: hidden; }
+
+/* Charakter-Modal: Video links, Text rechts */
+.modal__dialog--has-video {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  grid-template-areas:
+    "video title"
+    "video body";
+  column-gap: var(--space-6);
+  align-items: start;
+}
+.modal__dialog--has-video .modal__video { grid-area: video; }
+.modal__dialog--has-video .modal__title { grid-area: title; }
+.modal__dialog--has-video .modal__body  { grid-area: body; }
+.modal__dialog--has-video .modal__video .video { margin: 0; max-width: none; }
+@media (max-width: 480px) {
+  .modal__dialog--has-video {
+    grid-template-columns: 1fr;
+    grid-template-areas: "video" "title" "body";
+  }
+}
+
+/* ============================================
+   VIDEO (selbst gehostet — Klick-Facade & Autoplay-Clips)
+   ============================================ */
+.video {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: var(--space-6) auto;
+  aspect-ratio: 16 / 9;
+  background: #050505;
+  border: 1px solid var(--color-silver-faint);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.video--feature { margin-top: var(--space-8); }
+.modal__video .video { margin-bottom: 0; }
+.video__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  height: 100%;
+  color: var(--color-silver);
+  text-align: center;
+  padding: var(--space-4);
+}
+.video__play {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  /* Das ▶-Dreieck sitzt durch seine Glyphen-Geometrie leicht links —
+     kleiner Rechts-Versatz, damit es optisch mittig im Kreis steht. */
+  box-sizing: border-box;
+  padding-left: 5px;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+.video__btn:hover,
+.video__btn:focus-visible { color: var(--color-red); outline: none; }
+.video__btn:hover .video__play { transform: scale(1.08); }
+.video__label { font-family: var(--font-display); letter-spacing: 0.05em; font-size: 0.95rem; }
+.video iframe { width: 100%; height: 100%; border: 0; display: block; }
+.video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; object-fit: cover; background: #000; }
+/* Läuft das Video: Poster-Hintergrund der Facade ausblenden */
+.video.is-playing { background-image: none; }
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .gang-card:hover,
+  .gang-card:focus-visible { transform: none; }
+  .video__btn:hover .video__play { transform: none; }
+}
+
+/* ============================================
+   HERO-MEDIA (Titelbild → Trailer)
+   ============================================ */
+.hero__media {
+  position: relative;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto var(--space-8);
+  aspect-ratio: 16 / 9;
+  background-color: transparent;
+  background-position: center 36%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
+  cursor: pointer;
+  /* Weiche Vignette: Ränder werden dunkler und gehen nahtlos in Schwarz über */
+  -webkit-mask-image: radial-gradient(ellipse 82% 92% at 50% 42%, #000 44%, transparent 93%);
+          mask-image: radial-gradient(ellipse 82% 92% at 50% 42%, #000 44%, transparent 93%);
+}
+/* Läuft der Trailer: klare 16:9-Fläche, ohne Maske und ohne Poster */
+.hero__media.is-playing {
+  -webkit-mask-image: none;
+          mask-image: none;
+  background-image: none !important;
+}
+
+/* ---- Poster-Variante der Video-Facade (Bild + großes Play-Symbol) ---- */
+.video--poster {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.video--poster .video__btn--poster {
+  gap: var(--space-3);
+  color: #fff;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+}
+.video--poster .video__play {
+  width: 84px;
+  height: 84px;
+  background: rgba(0, 0, 0, 0.3);
+  border-color: #fff;
+  box-shadow: 0 0 26px rgba(0, 0, 0, 0.5);
+}
+.video--poster .video__btn--poster:hover,
+.video--poster .video__btn--poster:focus-visible { color: #fff; }
+.video--poster .video__btn--poster:hover .video__play {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  box-shadow: 0 0 34px var(--color-red-glow);
+}
+.video--poster .video__label {
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---- Hochformat-Videos (2. Trailer & Charakter-Clips) ---- */
+.video--portrait {
+  aspect-ratio: 9 / 16;
+  max-width: 340px;
+}
+
+/* schmalerer Innenbereich (z. B. Teaser-Block) */
+.section__inner--narrow { max-width: 760px; }
+
+/* ============================================
+   CHARAKTER-KARTEN: Hochkant-Kartengrafik
+   ============================================ */
+.gang-card--character .gang-card__image {
+  aspect-ratio: 384 / 573;
+  object-fit: contain;
+  background: #050505;
+  background-image: none;
+}
+
+/* ============================================
+   KARTEN-GRAFIK IM REGELWERK (Kapitel 1)
+   ============================================ */
+.card-figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  justify-content: center;
+  margin: var(--space-6) 0;
+}
+.card-figure {
+  flex: 0 1 120px;
+  max-width: 130px;
+  margin: 0;
+  text-align: center;
+}
+.card-figure img {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-silver-faint);
+}
+.card-figure figcaption {
+  margin-top: var(--space-2);
+  font-size: 0.9rem;
+  color: var(--color-silver-dim);
+  font-style: italic;
+}
+
+/* ============================================
+   GÄNG-HIERARCHIE (Kapitel 8, ersetzt die Tabelle)
+   ============================================ */
+.hierarchy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: var(--space-6) 0;
+}
+.hier-row {
+  display: grid;
+  grid-template-columns: 2.2rem 84px 1fr;
+  align-items: center;
+  gap: var(--space-4);
+  background: #0a0a0a;
+  border: 1px solid var(--color-silver-faint);
+  border-left: 4px solid var(--color-red);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-4);
+  transition: border-color var(--transition-med), box-shadow var(--transition-med), transform var(--transition-med);
+}
+.hier-row:hover {
+  border-color: var(--color-red);
+  box-shadow: 0 0 20px var(--color-red-glow);
+  transform: translateX(4px);
+}
+.hier-row__rank {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--color-red);
+  text-align: center;
+}
+.hier-row__logo {
+  width: 84px;
+  height: 48px;
+  object-fit: contain;
+  background: #000;
+  border-radius: 3px;
+}
+.hier-row__name { font-family: var(--font-display); font-size: 1.15rem; color: #fff; letter-spacing: 0.02em; }
+.hier-row__sub {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--color-silver-dim);
+  letter-spacing: 0;
+  margin-top: 2px;
+}
+.hier-row__stats { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-2); }
+.hier-stat { font-size: 0.8rem; color: var(--color-silver-dim); white-space: nowrap; }
+.hier-stat b { color: #fff; font-family: var(--font-display); font-weight: 400; margin-left: 3px; }
+.hier-row--special { border-left-color: var(--color-silver); }
+.hier-row--special .hier-row__rank { color: var(--color-silver); font-size: 1.3rem; }
+.hier-row--special .hier-row__logo { height: 64px; }
+@media (max-width: 560px) {
+  .hier-row { grid-template-columns: 1.8rem 60px 1fr; gap: var(--space-3); }
+  .hier-row__logo { width: 60px; height: 40px; }
+  .hier-row--special .hier-row__logo { height: 54px; }
+}
+
+/* ============================================
+   SCROLL-REVEAL (dezentes Einblenden)
+   ============================================ */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .hier-row:hover { transform: none; }
+}
+
+/* In-Text-Anker im Regelwerk nicht unter dem Sticky-Header verschwinden lassen */
+.hofregeln-section [id] { scroll-margin-top: 90px; }
+
+/* ============================================
+   KARTENBEISPIELE IN DER SCHRITT-LISTE (Kapitel 2)
+   ============================================ */
+.step-card {
+  float: right;
+  width: 84px;
+  margin: 0 0 var(--space-2) var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-silver-faint);
+  background: #050505;
+}
+.steps-list li::after { content: ""; display: block; clear: both; } /* gefloatete Karte einfangen */
+@media (max-width: 560px) {
+  .step-card { width: 64px; margin-left: var(--space-3); }
+}
+
+/* ============================================
+   HOME: CHARAKTERKARTEN KOMPAKTER (≈ halbe Größe)
+   ============================================ */
+.character-grid { justify-items: center; }
+.gang-card--character { max-width: 200px; }
+
+/* ============================================
+   HACKORDNUNG: ROT/GELB IM WECHSEL, SPEZIAL SILBER, SCHADEN-BADGES
+   ============================================ */
+.hier-row:nth-child(odd):not(.hier-row--special) { border-left-color: var(--color-red); }
+.hier-row:nth-child(odd):not(.hier-row--special) .hier-row__rank { color: var(--color-red); }
+.hier-row:nth-child(odd):not(.hier-row--special) .hier-row__name a { color: var(--color-red); text-decoration-color: var(--color-red); }
+.hier-row:nth-child(even):not(.hier-row--special) { border-left-color: var(--color-yellow); }
+.hier-row:nth-child(even):not(.hier-row--special) .hier-row__rank { color: var(--color-yellow); }
+.hier-row:nth-child(even):not(.hier-row--special) .hier-row__name a { color: var(--color-yellow); text-decoration-color: var(--color-yellow); }
+.hier-row--special .hier-row__name a { color: var(--color-silver); text-decoration-color: var(--color-silver); }
+
+.hier-stat .hier-dmg {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 1px 8px;
+  margin-left: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-silver-faint);
+  color: #fff;
+  text-align: center;
+}
+.hier-stat .hier-dmg--high {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  color: #fff;
+  box-shadow: 0 0 12px var(--color-red-glow);
+}
+.hier-stat .hier-dmg--zero {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-silver-dim);
+}
+
+/* ============================================
+   HOFREGELN-AKKORDEON (Kapitel als <details>)
+   ============================================ */
+.rules-tools {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 var(--space-4);
+}
+.rules-toggle-all {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-yellow);
+  border: 1px solid var(--color-silver-faint);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-4);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.rules-toggle-all:hover,
+.rules-toggle-all:focus-visible { border-color: var(--color-yellow); outline: none; }
+
+.chapter {
+  background: #0a0a0a;
+  border: 1px solid var(--color-silver-faint);
+  border-left: 4px solid var(--color-red);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-4);
+  scroll-margin-top: 80px;
+  overflow: hidden;
+}
+.chapter[open] { border-left-color: var(--color-yellow); }
+
+.chapter__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  cursor: pointer;
+  list-style: none;
+  transition: background var(--transition-fast);
+}
+.chapter__summary::-webkit-details-marker { display: none; }
+.chapter__summary:hover { background: rgba(192, 192, 192, 0.04); }
+.chapter__summary:focus-visible { outline: 2px solid var(--color-yellow); outline-offset: -2px; }
+
+.chapter__num {
+  flex: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--color-red);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px var(--color-red-glow);
+}
+.chapter[open] .chapter__num {
+  background: var(--color-yellow);
+  color: #000;
+  box-shadow: 0 0 10px var(--color-yellow-glow);
+}
+
+.chapter__head { flex: 1; min-width: 0; }
+.chapter__title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: var(--color-red);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+.chapter[open] .chapter__title { color: var(--color-yellow); }
+.chapter__teaser {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-silver-dim);
+  margin-top: 2px;
+}
+.chapter[open] .chapter__teaser { display: none; } /* offen: Teaser weg, mehr Ruhe */
+
+.chapter__chevron {
+  flex: none;
+  font-size: 1.2rem;
+  color: var(--color-silver-dim);
+  transition: transform var(--transition-med), color var(--transition-fast);
+}
+.chapter[open] .chapter__chevron { transform: rotate(90deg); color: var(--color-yellow); }
+.chapter__summary:hover .chapter__chevron { color: var(--color-yellow); }
+
+.chapter__body {
+  padding: var(--space-4) var(--space-6) var(--space-6);
+  border-top: 1px solid var(--color-silver-faint);
+}
+/* Kapitelinhalt erbt die bestehenden .hofregeln-section-Stile (h3/h4/ul/ol),
+   nur den Außenabstand im Akkordeon zurücksetzen */
+.chapter .hofregeln-section { margin-bottom: 0; }
+@media (max-width: 560px) {
+  .chapter__body { padding-left: var(--space-4); padding-right: var(--space-4); }
+}
+
+/* ============================================
+   PRINZIP-BANNER (Kernregeln hervorheben)
+   ============================================ */
+.principle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: linear-gradient(135deg, rgba(237, 19, 13, 0.14), rgba(0, 0, 0, 0.4));
+  border: 1px solid var(--color-red);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-6);
+  margin: var(--space-6) 0;
+}
+.principle__icon { font-size: 1.7rem; line-height: 1; flex: none; }
+.principle__text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.principle--accent {
+  background: linear-gradient(135deg, rgba(242, 194, 0, 0.14), rgba(0, 0, 0, 0.4));
+  border-color: var(--color-yellow);
+}
+.principle--accent .principle__text { color: var(--color-yellow); }
+
+/* ============================================
+   KARTENTYP-VERGLEICH (Kap. 1)
+   ============================================ */
+.type-compare {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+.type-card {
+  background: #0a0a0a;
+  border: 1px solid var(--color-silver-faint);
+  border-top: var(--border-thick) solid var(--color-red);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+.type-card__img {
+  width: 92px;
+  margin: 0 auto var(--space-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-silver-faint);
+  background: #050505;
+}
+.type-card__name {
+  font-family: var(--font-display);
+  color: var(--color-yellow);
+  font-size: 1.2rem;
+  text-align: center;
+}
+.type-card__meta {
+  font-size: 0.72rem;
+  color: var(--color-silver-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: var(--space-3);
+}
+.type-card__desc { font-size: 0.92rem; }
+@media (max-width: 560px) { .type-compare { grid-template-columns: 1fr; } }
+
+/* ============================================
+   KARTEN-ANATOMIE (Kap. 1, beschriftetes Kartenbild)
+   ============================================ */
+.card-anatomy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  align-items: flex-start;
+  margin: var(--space-6) 0;
+}
+.card-anatomy__fig {
+  position: relative;
+  flex: 0 0 auto;
+  width: 220px;
+  max-width: 70vw;
+  margin: 0 auto;
+}
+.card-anatomy__fig img {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-silver-faint);
+}
+.anatomy-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  pointer-events: none;
+}
+.anatomy-marker--tr,
+.anatomy-marker--br { flex-direction: row-reverse; }
+.anatomy-marker__no {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-yellow);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px #000, 0 0 8px var(--color-yellow-glow);
+}
+.anatomy-marker__txt {
+  font-size: 0.68rem;
+  background: rgba(0, 0, 0, 0.82);
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.anatomy-legend { flex: 1 1 280px; min-width: 240px; }
+/* Nummern-Badge in der Anatomie-Legende (passend zu den gelben Markern) */
+.anat-no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: var(--color-yellow);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  margin-right: 0.4rem;
+}
+
+/* ============================================
+   AKTIONS-KARTEN (Kap. 3: Schlagen / Wegboxen / Ducken)
+   ============================================ */
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+.action-card {
+  background: #0a0a0a;
+  border: 1px solid var(--color-silver-faint);
+  border-left: 4px solid var(--color-red);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-6);
+}
+.action-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+.action-card__icon {
+  width: 2.2rem;
+  height: 2.2rem;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(237, 19, 13, 0.15);
+  border: 1px solid var(--color-red);
+  font-size: 1.1rem;
+}
+.action-card__label {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-yellow);
+  letter-spacing: 0.02em;
+}
+.action-card__desc { margin: 0; }
+.action-card .example-box { margin-bottom: 0; }
+
+/* ============================================
+   ABLAUF-TIMELINE (Kap. 4)
+   ============================================ */
+.flow {
+  position: relative;
+  margin: var(--space-6) 0;
+  padding-left: 1.8rem;
+  border-left: 2px solid var(--color-silver-faint);
+}
+.flow__step { position: relative; margin-bottom: var(--space-8); }
+.flow__step:last-child { margin-bottom: 0; }
+.flow__step::before {
+  content: '';
+  position: absolute;
+  left: -1.8rem;
+  top: 0.4rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-left: -0.49rem;
+  border-radius: 50%;
+  background: var(--color-red);
+  border: 2px solid #000;
+  box-shadow: 0 0 8px var(--color-red-glow);
+}
+.flow__step > h3:first-child { margin-top: 0; }
+
+/* ============================================
+   AUSWEGE / VERRAT-TAUSCH (Kap. 5)
+   ============================================ */
+.swap-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+}
+.swap-party {
+  background: #0a0a0a;
+  border: 1px solid var(--color-silver-faint);
+  border-radius: var(--radius);
+  padding: var(--space-3) var(--space-6);
+  text-align: center;
+  min-width: 120px;
+}
+.swap-party__role { font-family: var(--font-display); color: var(--color-yellow); font-size: 1.15rem; }
+.swap-party__sub { display: block; font-size: 0.78rem; color: var(--color-silver-dim); }
+.swap-arrows { display: flex; flex-direction: column; gap: var(--space-2); font-size: 0.82rem; }
+.swap-arrows span { white-space: nowrap; }
+.swap-arrows .a-give { color: var(--color-red); }
+.swap-arrows .a-back { color: var(--color-silver-dim); }
+
+/* ============================================
+   REVOLUTION-FLIP (Kap. 6)
+   ============================================ */
+.flip-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  margin: var(--space-6) 0;
+  flex-wrap: wrap;
+}
+.flip-demo__item { text-align: center; }
+.flip-demo__card {
+  width: 72px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  background: #131313;
+  border: 2px solid;
+}
+.flip-demo__card--before { color: #3399ff; border-color: #0066cc; }
+.flip-demo__card--after { color: var(--color-yellow); border-color: #cc9900; }
+.flip-demo__label { display: block; font-size: 0.78rem; color: var(--color-silver-dim); margin-top: var(--space-2); }
+.flip-demo__arrow { font-size: 1.8rem; color: var(--color-yellow); }
+
+/* ============================================
+   WESTE-ZUSTÄNDE (Kap. 6)
+   ============================================ */
+.toggle-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin: var(--space-6) 0;
+}
+.toggle-demo figure { flex: 0 1 130px; margin: 0; text-align: center; }
+.toggle-demo img { width: 100%; border-radius: var(--radius); border: 1px solid var(--color-silver-faint); }
+.toggle-demo figcaption { margin-top: var(--space-2); font-size: 0.82rem; color: var(--color-silver-dim); }
+.toggle-demo__arrow { font-size: 1.8rem; color: var(--color-yellow); }
+
+/* ============================================
+   STAT-BLÖCKE (Kap. 7: Ungebetene Gäste)
+   ============================================ */
+.statblock {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+  background: #0a0a0a;
+  border: 1px solid var(--color-silver-faint);
+  border-left: 4px solid var(--color-yellow);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-6);
+  margin: var(--space-6) 0;
+}
+.statblock__img { flex: 0 0 110px; }
+.statblock__img img { width: 100%; border-radius: var(--radius); border: 1px solid var(--color-silver-faint); }
+.statblock__main { flex: 1; min-width: 0; }
+.statblock__name {
+  font-family: var(--font-display);
+  color: var(--color-yellow);
+  font-size: 1.3rem;
+  margin-bottom: var(--space-2);
+}
+.statblock__stats { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); margin-bottom: var(--space-3); }
+.stat-chip {
+  font-size: 0.78rem;
+  color: var(--color-silver-dim);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-silver-faint);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+.stat-chip b { color: #fff; font-family: var(--font-display); font-weight: 400; margin-left: 4px; }
+.statblock ul { margin-bottom: 0; }
+@media (max-width: 560px) {
+  .statblock { flex-direction: column; align-items: center; }
+  .statblock__img { flex-basis: auto; width: 120px; }
+}
+
+/* ============================================
+   AKKORDEON: REDUCED MOTION & DRUCK
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .chapter__chevron { transition: none; }
+}
+@media print {
+  .rules-tools, .chapter__chevron, .toc { display: none; }
+  .chapter > .chapter__body { display: block !important; }
+  .chapter__teaser { display: none; }
+}
