@@ -53,10 +53,6 @@
       </ul>
     </nav>
 
-    <div class="note-box">
-      <strong>Gut zu wissen:</strong> Eine <em>Gäng</em> ist nur der Sammelname für alle vier Karten einer Stärke. Die Formation aus mehreren gleich starken Karten heißt dagegen immer <a class="rule-link" href="#mob">Mob</a>. Spielt ein Spieler seine letzte Handkarte, endet die <a class="rule-link" href="#schlagabtausch">Schlägerei</a> sofort.
-    </div>
-
     <div class="rules-tools">
       <button type="button" class="rules-toggle-all" data-toggle-all aria-expanded="false">Alle Kapitel öffnen</button>
     </div>
@@ -83,8 +79,8 @@
           <div class="type-card" id="bronko-lp">
             <img class="type-card__img" src="../assets/images/cards/lp/lp-100.svg" alt="Bronko-LP-Karte mit 100 LP" loading="lazy" />
             <div class="type-card__name">Dein Bronko</div>
-            <div class="type-card__meta">10 Karten · 100 LP · Faust</div>
-            <p class="type-card__desc"><strong>Dein Bronko (10 LP-Karten):</strong> Dein eigener Bronko ist deine Lebensanzeige. Er liegt von Anfang an als offener <strong>10-Karten-Stapel</strong> vor dir — <strong>100 LP ganz oben, 10 LP ganz unten</strong>, jede Karte zählt 10 LP (zusammen <strong>100 LP</strong>). Je weiter unten die Karte, desto kaputter geprügelt zeigt sie deinen Bronko. Auf der Rückseite tragen alle Karten die <strong>Faust</strong>. Kassierst du Schaden, blutet dein Bronko und du wirfst die oberste(n) Karte(n) ab.</p>
+            <div class="type-card__meta">2× 10 Karten · 100 LP · Faust</div>
+            <p class="type-card__desc"><strong>Dein Bronko (LP):</strong> Trägt die <strong>Faust</strong> auf der Rückseite. Dein eigener Bronko ist deine Lebensanzeige — ein offener <strong>10-Karten-Stapel mit 100 LP</strong>. Wie er aufgebaut wird, steht in der Spielvorbereitung.</p>
           </div>
         </div>
 
@@ -100,8 +96,8 @@
             <span class="anatomy-marker anatomy-marker--br" style="left:82%;top:90%" aria-hidden="true"><span class="anatomy-marker__no">4</span><span class="anatomy-marker__txt">Revolution</span></span>
           </div>
           <ul class="anatomy-legend">
-            <li id="staerke"><b class="anat-no">1</b><strong>Die Stärke &amp; Gäng (Zahl oben links):</strong> Der Wert im normalen Kampf (0 bis 8). Wichtig, wenn du die Karten auf der Hand hältst: Diese reguläre Stärke ist immer vollflächig farbig ausgefüllt. Jede Stärke bildet eine eigene Gäng (z. B. sind alle 4er-Karten die „Vertriebler“, alle 8er-Karten die „Bronko“). Von jeder Gäng gibt es exakt 4 Karten im Spiel.</li>
-            <li><b class="anat-no">2</b><strong>Die Farbe:</strong> Es gibt 4 Farben (<span class="t-red">Rot</span>, <span class="t-yel">Gelb</span>, <span class="t-grn">Grün</span>, <span class="t-blu">Blau</span>) für die Standardkarten sowie Weiß für die beiden Spezialkarten. Von jeder Gäng (Stärke 1 bis 8) gibt es genau eine Karte pro Farbe. Farbe und Stärke sind entscheidend, um bestimmte <a class="rule-link" href="#formationen">Formationen</a> zu bilden.</li>
+            <li id="staerke"><b class="anat-no">1</b><strong>Die Stärke (Zahl oben links):</strong> Der Wert im normalen Kampf (0 bis 8). Wichtig, wenn du die Karten auf der Hand hältst: Diese reguläre Stärke ist immer vollflächig farbig ausgefüllt.</li>
+            <li><b class="anat-no">2</b><strong>Die Farbe:</strong> Es gibt 4 Farben (<span class="t-red">Rot</span>, <span class="t-yel">Gelb</span>, <span class="t-grn">Grün</span>, <span class="t-blu">Blau</span>) für die Standardkarten sowie Weiß für die beiden Spezialkarten. Von jeder Stärke (1 bis 8) gibt es genau eine Karte pro Farbe. Farbe und Stärke sind entscheidend, um bestimmte <a class="rule-link" href="#formationen">Formationen</a> zu bilden.</li>
             <li id="schaden"><b class="anat-no">3</b><strong>Der Schaden (oben rechts):</strong> Abgebildet in einem gezackten Symbol in der jeweiligen Kartenfarbe. Die Zahl zeigt an, wie viele Lebenspunkte dich diese Karte am Ende der Runde kostet. Karten ohne dieses Symbol richten keinen Schaden an.</li>
             <li id="revolutionsstaerke"><b class="anat-no">4</b><strong>Die Revolutionsstärke (Zahl unten rechts):</strong> Diese Zahl steht auf dem Kopf und ist nur als feine Kontur gezeichnet. Sie wird erst wichtig, wenn im Hof eine <a class="rule-link" href="#revolution">Revolution</a> ausbricht und du deine Handkarten umdrehen musst.</li>
           </ul>
@@ -198,7 +194,7 @@
             <p class="action-card__desc">Du spielst eine <em>stärkere</em> Formation desselben Typs und derselben Kartenanzahl aus. Deine Karten liegen nun obenauf und setzen den neuen Maßstab.</p>
             <div class="example-box">
               <strong class="example-title">Beispiel für Schlagen:</strong>
-              Liegt im Hof ein <strong>2er-Mob der Gäng „Hautz“</strong> (<span class="c-num c-blu">5</span>-<span class="c-num c-yel">5</span>), kannst du diesen mit einem stärkeren <strong>2er-Mob der Gäng „Moneyboy“</strong> (<span class="c-num c-red">7</span>-<span class="c-num c-grn">7</span>) schlagen. Kartenanzahl und Typ (Mob) bleiben gleich, die Stärke steigt.
+              Liegt im Hof ein <strong>2er-Mob der Stärke 5</strong> (<span class="c-num c-blu">5</span>-<span class="c-num c-yel">5</span>), kannst du diesen mit einem stärkeren <strong>2er-Mob der Stärke 7</strong> (<span class="c-num c-red">7</span>-<span class="c-num c-grn">7</span>) schlagen. Kartenanzahl und Typ (Mob) bleiben gleich, die Stärke steigt.
             </div>
           </div>
           <div class="action-card">
@@ -250,11 +246,14 @@
         <span class="chapter__chevron" aria-hidden="true">&rsaquo;</span>
       </summary>
       <div class="chapter__body hofregeln-section">
-        <p>Sobald ein Spieler seine <strong>letzte Handkarte ablegt</strong>, endet die Schlägerei augenblicklich. Der Gewinner erhält die <strong>Bronko-Blut-Karte</strong> und wird für diese Runde zum Boss. Nun folgt die Abrechnung für den Verlierer:</p>
+        <p>Sobald ein Spieler seine <strong>letzte Handkarte ablegt</strong>, endet die Schlägerei augenblicklich. Damit werden beide Rollen vergeben: Der <strong>Gewinner</strong> wird zum <strong>Bronko</strong> (Boss) und erhält die <strong>Bronko-Blut-Karte</strong>. Der <strong>Verlierer</strong> wird zum <strong>Donko</strong> und nimmt die <strong>Donko-Haufen-Karte</strong> zu sich (bzw. behält sie, falls er schon Donko war). Was das Donko-Dasein bedeutet, steht in <a class="rule-link" href="#kapitel5">Kapitel 5</a>. Nun folgt die Abrechnung für den Verlierer:</p>
 
         <div class="card-figures">
           <figure class="card-figure">
             <img src="../assets/images/cards/special/bronko-blut.png" alt="Bronko-Blut-Karte" loading="lazy" />
+          </figure>
+          <figure class="card-figure">
+            <img src="../assets/images/cards/special/donko-haufen.png" alt="Donko-Haufen-Karte" loading="lazy" />
           </figure>
         </div>
 
@@ -272,7 +271,7 @@
               <strong>10 Schaden</strong> bleiben 10 LP → ebenfalls 1 Karte.
               <strong>11 Schaden</strong> werden auf 20 LP aufgerundet → 2 Karten abwerfen.
               <strong>20 Schaden</strong> (z. B. <a class="rule-link" href="#drkose">Dr. nar Kose</a>) → 2 Karten.<br><br>
-              <strong>0 Schaden:</strong> Wer keine Karten mit Schadenswert mehr auf der Hand hält, verliert keine Karte. Ist dieser Spieler der <a class="rule-link" href="#kapitel5">Donko</a>, darf er dafür eine <a class="rule-link" href="#fluchtplan">Fluchtkarte</a> ablegen.
+              <strong>0 Schaden:</strong> Wer keine Karten mit Schadenswert mehr auf der Hand hält, verliert keine LP-Karte. Übersteht der <a class="rule-link" href="#kapitel5">Donko</a> die Schlägerei sogar ganz <strong>ohne LP-Verlust</strong> – also auch ohne eine über die <a class="rule-link" href="#tischmitte">Weste</a> verlorene LP-Karte –, darf er dafür eine <a class="rule-link" href="#fluchtplan">Fluchtkarte</a> ablegen.
             </div>
             <p>Liegt durch die <a class="rule-link" href="#weste">Weste</a> eine LP-Karte in der Mitte, greift zuerst die <a class="rule-link" href="#tischmitte">eiserne Regel der Tischmitte</a>.</p>
           </div>
@@ -294,49 +293,49 @@
         <span class="chapter__chevron" aria-hidden="true">&rsaquo;</span>
       </summary>
       <div class="chapter__body hofregeln-section">
-        <p>Nachdem in der <a class="rule-link" href="#kapitel4">Abrechnung</a> der Staub verflogen und der Schaden verteilt ist, wird bestimmt, wer der absolute Verlierer des Hofes ist. Die <strong>Donko-Haufen-Karte</strong> markiert diesen Unglücksraben.</p>
+        <p>Der <strong>Verlierer</strong> einer Schlägerei ist der <strong>Donko</strong> und trägt die <strong>Donko-Haufen-Karte</strong> (vergeben in der <a class="rule-link" href="#kapitel4">Abrechnung</a>). Solange du den Haufen hast, ziehst du mit Handicap in die nächste Schlägerei – darfst sie dafür aber eröffnen.</p>
 
-        <div class="card-figures">
-          <figure class="card-figure">
-            <img src="../assets/images/cards/special/donko-haufen.png" alt="Donko-Haufen-Karte" loading="lazy" />
-          </figure>
+        <h3>Was der Donko muss – und darf</h3>
+        <div class="action-list">
+          <div class="action-card">
+            <div class="action-card__head">
+              <span class="action-card__icon" aria-hidden="true">&#8635;</span>
+              <span class="action-card__label">Dealer</span>
+            </div>
+            <p class="action-card__desc">Mischt und teilt die <a class="rule-link" href="#kaempfer">Kämpferkarten</a> für die nächste Schlägerei aus – die Drecksarbeit bleibt am Donko hängen.</p>
+          </div>
+          <div class="action-card">
+            <div class="action-card__head">
+              <span class="action-card__icon" aria-hidden="true">&#8644;</span>
+              <span class="action-card__label">Verrat</span>
+            </div>
+            <p class="action-card__desc">Gibt seine 2 stärksten Handkarten an den Bronko ab und bekommt 2 beliebige zurück (Details beim <a class="rule-link" href="#verrat">Verrat</a>).</p>
+          </div>
+          <div class="action-card">
+            <div class="action-card__head">
+              <span class="action-card__icon" aria-hidden="true">✊</span>
+              <span class="action-card__label">Erstes Kommando</span>
+            </div>
+            <p class="action-card__desc">Darf dafür den ersten <a class="rule-link" href="#schlagabtausch">Schlagabtausch</a> mit einer beliebigen Formation eröffnen.</p>
+          </div>
         </div>
 
-        <h3>Wer bekommt den Haufen?</h3>
-        <p>Das hängt davon ab, ob der Hof gerade herrenlos ist oder es bereits einen amtierenden Donko gibt:</p>
-        <ul>
-          <li><strong>Die Karte liegt in der Tischmitte:</strong> (Das ist zu Beginn des Matches der Fall oder nach einer erfolgreichen Flucht.) In diesem Fall wandert die Karte an den <strong>Verlierer der gerade beendeten Schlägerei</strong> – also den Spieler, der nicht zuerst alle Handkarten loswurde.</li>
-          <li><strong>Es gibt bereits einen Donko:</strong> Der amtierende Donko behält die Karte nach einer normalen Schlägerei einfach bei sich. Der Haufen wird nur dann weitergereicht, wenn der bisherige Donko die Schlägerei überraschend gewinnt und selbst zum Bronko aufsteigt. In diesem Fall wandert die Karte direkt zum Gegner, dem neuen Verlierer.</li>
-        </ul>
-
-        <div class="note-box">
-          <strong>Der Handlanger-Job: Der Donko ist der Dealer!</strong><br>
-          Sobald es einen amtierenden Donko im Spiel gibt, muss dieser die Drecksarbeit erledigen. Er ist automatisch der feste Dealer der Runde und muss die Kämpferkarten für die nächste Schlägerei mischen und austeilen.
-        </div>
-
-        <h3>Auswege aus dem Donko-Dasein</h3>
-        <p>Wer die Karte einmal besitzt, bleibt so lange der Donko, bis eines von drei Dingen passiert:</p>
+        <h3>Raus aus der Donko-Rolle</h3>
+        <p>Den Haufen wirst du nur auf zwei Wegen wieder los:</p>
         <div class="action-list">
           <div class="action-card">
             <div class="action-card__head">
               <span class="action-card__icon" aria-hidden="true">&uarr;</span>
-              <span class="action-card__label">Aufstieg zum Boss</span>
+              <span class="action-card__label">Bronko werden</span>
             </div>
-            <p class="action-card__desc">Der Donko gewinnt die Schlägerei und wird zum Bronko.</p>
-          </div>
-          <div class="action-card">
-            <div class="action-card__head">
-              <span class="action-card__icon" aria-hidden="true">&times;</span>
-              <span class="action-card__label">Das bittere Ende</span>
-            </div>
-            <p class="action-card__desc">Der Donko wird komplett plattgemacht: Sein Bronko ist umgenockt (der <a class="rule-link" href="#bronko-lp">LP-Stapel</a> ist leer, 0 LP). <strong>Damit endet das Spiel sofort – der Gegner gewinnt und kassiert den Bronko-Orden.</strong></p>
+            <p class="action-card__desc">Gewinn die Schlägerei und steig zum Bronko auf – der Haufen wandert sofort zum Gegner, dem neuen Donko.</p>
           </div>
           <div class="action-card">
             <div class="action-card__head">
               <span class="action-card__icon" aria-hidden="true">&rarr;</span>
-              <span class="action-card__label">Der Fluchtplan</span>
+              <span class="action-card__label">Fliehen</span>
             </div>
-            <p class="action-card__desc">Der Donko arbeitet seine 3 Fluchtkarten ab.</p>
+            <p class="action-card__desc">Arbeite deine 3 <a class="rule-link" href="#fluchtplan">Fluchtkarten</a> ab – dann bist du den Fluch los.</p>
           </div>
         </div>
 
@@ -354,8 +353,9 @@
           </figure>
         </div>
         <ul>
-          <li>Schafft es der Donko, während einer Schlägerei alle seine Karten mit Schaden loszuwerden, sodass er am Ende <strong>ausschließlich Karten ohne Schadenswert</strong> (Donko, Cobra, Hipster) auf der Hand hält, erleidet er 0 Schaden. Diese erfolgreiche Flucht erlaubt es ihm, sofort <strong>eine seiner Fluchtkarten zurück in die Mitte zu legen</strong>.</li>
-          <li>Sobald der Donko seine <strong>dritte und letzte Fluchtkarte</strong> abgegeben hat, bricht er den Fluch: Die Donko-Haufen-Karte wandert sofort <strong>zurück in die Tischmitte</strong> und wird in dieser Runde an <em>niemanden</em> neu vergeben. Die nächste Runde startet für alle als <a class="rule-link" href="#kapitel3">Schlägerei ohne Donko</a>.</li>
+          <li>Eine <strong>erfolgreiche Flucht</strong> gelingt nur in einer <strong>schadenfreien Schlägerei</strong>: Der Donko hält am Ende <strong>ausschließlich Karten ohne Schadenswert</strong> (Donko, Cobra, Hipster) auf der Hand <strong>und</strong> verliert <strong>keine</strong> LP-Karte über die <a class="rule-link" href="#tischmitte">Weste</a>. Dann darf er sofort <strong>eine seiner Fluchtkarten zurück in die Mitte legen</strong>.</li>
+          <li><strong>Achtung:</strong> Verliert er in dieser Schlägerei eine LP-Karte aus der <a class="rule-link" href="#tischmitte">Tischmitte</a> (weil er die Runde nicht gewonnen hat), zählt das als erlittener Schaden – die Flucht misslingt, und er legt <em>keine</em> Fluchtkarte ab, selbst wenn seine Hand 0 Schaden macht.</li>
+          <li>Sobald der Donko seine <strong>dritte und letzte Fluchtkarte</strong> abgegeben hat, bricht er den Fluch: Die Donko-Haufen-Karte wandert sofort <strong>zurück in die Tischmitte</strong> (statt bei ihm zu bleiben). Die nächste Runde startet als <a class="rule-link" href="#kapitel3">Schlägerei ohne Donko</a>.</li>
         </ul>
 
         <h3 id="verrat">Der Verrat</h3>
@@ -373,7 +373,7 @@
             <span class="swap-party__sub">der Boss</span>
           </div>
         </div>
-        <p>Zu Beginn jeder neuen Schlägerei (direkt nachdem der Donko die Karten gemischt und ausgeteilt hat) findet der Kartentausch statt: Der Donko muss seine zwei stärksten Handkarten offen an den amtierenden Bronko übergeben. Ausschlaggebend ist hierbei die reine <strong><a class="rule-link" href="#staerke">Basis-Stärke</a></strong> (Zahl oben links). Besitzt der Donko mehrere Karten mit demselben höchsten Stärkewert, wählt er die Farbe selbst aus. Der Bronko reicht ihm im Gegenzug zwei beliebige Handkarten seiner Wahl offen zurück. Der Bronko hat hierbei die freie Wahl und darf dem Donko auch eine oder beide der soeben erhaltenen Karten direkt wieder zurückgeben. Spezialkarten (die <a class="rule-link" href="#kapitel7">Ungebetenen Gäste</a>) sind vom Verrat grundsätzlich ausgeschlossen.</p>
+        <p>Zu Beginn jeder neuen Schlägerei (direkt nachdem der Donko die Karten gemischt und ausgeteilt hat) findet der Kartentausch statt: Der Donko muss seine zwei stärksten Handkarten an den amtierenden Bronko übergeben. Ausschlaggebend ist hierbei die reine <strong><a class="rule-link" href="#staerke">Basis-Stärke</a></strong> (Zahl oben links). Besitzt der Donko mehrere Karten mit demselben höchsten Stärkewert, wählt er die Farbe selbst aus. Der Bronko reicht ihm im Gegenzug zwei beliebige Handkarten seiner Wahl zurück. Der Bronko hat hierbei die freie Wahl und darf dem Donko auch eine oder beide der soeben erhaltenen Karten direkt wieder zurückgeben. Spezialkarten (die <a class="rule-link" href="#kapitel7">Ungebetenen Gäste</a>) sind vom Verrat grundsätzlich ausgeschlossen.</p>
       </div>
     </details>
 
